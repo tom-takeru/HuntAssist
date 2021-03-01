@@ -1,0 +1,20 @@
+body, #wapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer {
+    margin-top: auto;
+}
+
+.my-div-style {
+    display: block;
+    margin-top: 4rem;
+    padding: 100px;
+    background-color: #e3a929;
+}
+
+.right {
+    float: right;
+}
