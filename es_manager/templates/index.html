@@ -1,19 +1,11 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}Hunt Assist〜ES編集・管理〜{% endblock %}
 
-{% block header %}
-<!-- Header -->
-<header class="masthead d-flex">
-    <div class="container text-center my-auto">
-        <h1 class="mb-1"><i>Hunt Assist</i></h1>
-        <h3 class="mb-5">
-            <strong>ES編集・管理サイト</strong>
-        </h3>
-        <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'es_manager:index' %}">LOG IN</a>
-    </div>
-    <div class="overlay"></div>
-</header>
-{% endblock %}
+{% block header %}{% endblock %}
 
-{% block contents %}{% endblock %}
+{% block contents %}
+<img class="img-fluid rounded" src="{% static '/img/icons/logo.png' %}">
+{% endblock %}

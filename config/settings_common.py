@@ -35,7 +35,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'es_manager.apps.EsManagerConfig',
+    'accounts.apps.AccountsConfig',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +150,24 @@ MESSAGE_TAGS = {
     messages.SUCCESS: 'alert alert-success',
     messages.INFO: 'alert alert-info',
 }
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# django-allauth setting
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    'allauth.account.auth_backends.AuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USERNAME_REQUIRED = False
+
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_REQUIRED = True
+
+LOGIN_REDIRECT_URL = 'es_manager:index'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
+
+ACCOUNT_LOGOUT_ON_GET = True
