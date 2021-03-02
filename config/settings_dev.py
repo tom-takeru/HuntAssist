@@ -1,9 +1,9 @@
 from .settings_common import *
 
 # SECURITY WARNING: don't run with debug turned on production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # logging settings for development
 LOGGING = {
@@ -45,5 +45,3 @@ LOGGING = {
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
