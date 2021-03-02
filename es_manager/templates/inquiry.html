@@ -7,29 +7,31 @@
 {% block contents %}
 
 <div class="container">
-  <div class="row">
-    <h1>お問い合わせ(Hunt Assist)</h1>
-  </div>
-  <form method="post">
-    {% csrf_token %}
+  <div class="my-div-style">
+    <div class="row">
+      <h1>お問い合わせ(Hunt Assist)</h1>
+    </div>
+    <form method="post">
+      {% csrf_token %}
 
-    {{ form.non_field_errors }}
+      {{ form.non_field_errors }}
 
-    {% for field in form %}
-    <div class="form-group row">
-      <label for="{{ field.id_for_label }}" class="col-4 col-form-label">
-        <strong class="right">{{ field.label_tag }}</strong>
-      </label>
-      <div class="col-8">
-        {{ field }}
-        {{ field.errors }}
+      {% for field in form %}
+      <div class="form-group row">
+        <label for="{{ field.id_for_label }}" class="col-4 col-form-label">
+          <strong class="right">{{ field.label_tag }}</strong>
+        </label>
+        <div class="col-8">
+          {{ field }}
+          {{ field.errors }}
+        </div>
       </div>
-    </div>
-    {% endfor %}
+      {% endfor %}
 
-    <div class="offset-sm-4 col-sm-1">
-      <button class="btn btn-primary" type="submit">送信</button>
-    </div>
-  </form>
+      <div class="offset-sm-4 col-sm-1">
+        <button class="btn btn-primary" type="submit">送信</button>
+      </div>
+    </form>
+  </div>
 </div>
 {% endblock %}

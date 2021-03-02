@@ -13,6 +13,10 @@ logger = logging.getLogger(__name__)
 class IndexView(TemplateView):
     template_name = 'index.html'
 
+class AboutView(TemplateView):
+    template_name = 'about.html'
+
+
 class InquiryView(FormView):
     template_name = 'inquiry.html'
     form_class = InquiryForm

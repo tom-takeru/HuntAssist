@@ -6,20 +6,22 @@
 
 {% block contents %}
 <div class="container">
-  <div class="row">
-    <h1 class="col">サインアップ</h1>
-  </div>
-  <form method="post" action="{% url 'account_signup' %}">
-    {% csrf_token %}
-
-    {{ form.as_p }}
-
-    {% if redirect_field_value %}
+  <div class="my-div-style">
     <div class="row">
-      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+      <h1 class="col">サインアップ</h1>
     </div>
-    {% endif %}
-    <button class="btn btn-primary" type="submit">登録</button>
-  </form>
+    <form method="post" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+
+      {{ form.as_p }}
+
+      {% if redirect_field_value %}
+      <div class="row">
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+      </div>
+      {% endif %}
+      <button class="btn btn-primary" type="submit">登録</button>
+    </form>
+  </div>
 </div>
 {% endblock %}

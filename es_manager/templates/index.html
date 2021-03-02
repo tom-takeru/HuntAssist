@@ -7,5 +7,26 @@
 {% block header %}{% endblock %}
 
 {% block contents %}
-<img class="img-fluid rounded" src="{% static '/img/icons/logo.png' %}">
+<div class="text-center">
+  <img class="img-fluid" src="{% static '/img/icons/logo.png' %}">
+</div>
+<div class="row">
+  <div class="col-6"><img class="img-fluid" src="{% static '/img/bg-callout.jpg' %}"></div>
+  <div class="col-6 mh-100 py-5 bg-info">
+    <h1>ESを編集できる</h1>
+    <br>
+    <h3>就職活動でたくさん作るES(エントリーシート)を<br>このアプリで作ろう！</h3>
+    <h3>文字数カウンタ付きで文字数を確認しながら編集できる</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-6 mh-100 py-5 bg-primary">
+    <h1>ESを保存して管理できる</h1>
+    <br>
+    <h3>就職活動でたくさん作るES(エントリーシート)を<br>このアプリで保存！</h3>
+    <h3>タグ付け機能で検索して再利用ができる！</h3>
+  </div>
+  <div class="col-6"><img class="img-fluid" src="{% static '/img/bg-masthead.jpg' %}"></div>
+</div>
+
 {% endblock %}
