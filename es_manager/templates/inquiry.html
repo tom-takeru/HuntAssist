@@ -2,14 +2,14 @@
 
 {% block title %}お問い合わせ|Hunt Assist〜ES編集・管理〜{% endblock %}
 
-{% block active_inquiry %}{% endblock %}
+{% block active_inquiry %}active{% endblock %}
 
 {% block contents %}
 
 <div class="container">
   <div class="my-div-style">
     <div class="row">
-      <h1>お問い合わせ(Hunt Assist)</h1>
+      <h1>お問い合わせ</h1>
     </div>
     <form method="post">
       {% csrf_token %}

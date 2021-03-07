@@ -31,7 +31,10 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="{% url 'es_manager:index' %}">Hunt Assist</a>
-    <p class="text-info pt-3">〜ES編集・管理〜</p>
+    <p class="text-success bg-light mt-3">〜ES編集・管理アプリケーション〜</p>
+    {% if user.is_authenticated %}
+    <p class="text-white ml-5 mt-3">ユーザー：{{ user.email }}</p>
+    {% endif %}
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="navbar-nav">
         {% if user.is_authenticated %}
@@ -39,22 +42,22 @@
           <a class="nav-link" href="#">ES</a>
         </li>
         {% endif %}
-        <li class="nav-item" {% block active_about %}{% endblock %}>
+        <li class="nav-item {% block active_about %}{% endblock %}">
           <a class="nav-link" href="{% url 'es_manager:about' %}">About</a>
         </li>
-        <li class="nav-item" {% block active_inquiry %}{% endblock %}>
+        <li class="nav-item {% block active_inquiry %}{% endblock %}">
           <a class="nav-link" href="{% url 'es_manager:inquiry' %}">Inquiry</a>
         </li>
         {% if user.is_authenticated %}
-        <li class="nav-item" {% block active_logout %}{% endblock %}>
+        <li class="nav-item {% block active_logout %}{% endblock %}">
           <a class="nav-link" href="{% url 'account_logout' %}">LogOut</a>
         </li>
         {% else %}
-        <li class="nav-item" {% block active_signup %}{% endblock %}>
-          <a class="nav-link" href="{% url 'account_signup' %}">SignUp</a>
+        <li class="nav-item {% block active_signup %}{% endblock %}">
+          <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
         </li>
-        <li class="nav-item" {% block active_login %}{% endblock %}>
-          <a class="nav-link" href="{% url 'account_login' %}">LogIn</a>
+        <li class="nav-item {% block active_login %}{% endblock %}">
+          <a class="nav-link" href="{% url 'account_login' %}">Log In</a>
         </li>
         {% endif %}
       </ul>
