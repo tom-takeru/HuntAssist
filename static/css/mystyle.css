@@ -1,7 +1,16 @@
 .my-div-style {
-    margin-top:7rem;
+    margin-top:5rem;
 }
+
+body {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
 footer {
-  margin-top: auto;
-  padding: 5rem 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
 }

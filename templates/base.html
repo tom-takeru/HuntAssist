@@ -32,9 +32,7 @@
     </button>
     <a class="navbar-brand" href="{% url 'es_manager:index' %}">Hunt Assist</a>
     <p class="text-success bg-light mt-3">〜ES編集・管理アプリケーション〜</p>
-    {% if user.is_authenticated %}
-    <p class="text-white ml-5 mt-3">ユーザー：{{ user.email }}</p>
-    {% endif %}
+    <p class="text-white ml-5 mt-3">ユーザー：{{ user.email|default:'-' }}</p>
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="navbar-nav">
         {% if user.is_authenticated %}
@@ -82,11 +80,14 @@
 </div>
 {% endif %}
 
-{% block contents %}{% endblock %}
+<!-- messagesがない時はnavbarの分だけcontentsを下げる -->
+<div {% if not messages %} class="my-div-style" {% endif %}>
+  {% block contents %}{% endblock %}
+</div>
 
 <!-- Footer -->
-<footer>
-  <p class="text-muted small mb-0 text-center">Copyright &copy; Take Yoshi 2021</p>
+<footer class="footer bg-dark mt-auto py-5">
+  <span class="text-muted">Copyright &copy; Hunt Assist 2021</span>
 </footer>
 
 <!-- Optional JavaScript -->
