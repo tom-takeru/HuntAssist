@@ -6,24 +6,22 @@
 
 {% block contents %}
 <div class="container">
-  <div class="my-div-style">
-    <div class="row">
-      <h1 class="col">ユーザー登録</h1>
-    </div>
-    <div class="row">
-      {% if confirmation %}
-      <p>ユーザー登録を確定するには、以下のボタンを押してください。</p>
-      <form method="POST" action="{% url 'account_confirm_email' confirmation.key %}">
-        {% csrf_token %}
-        <button class="btn btn-primary" type="submit">確定</button>
-      </form>
+  <div class="row">
+    <h1 class="col">ユーザー登録</h1>
+  </div>
+  <div class="row">
+    {% if confirmation %}
+    <p>ユーザー登録を確定するには、以下のボタンを押してください。</p>
+    <form method="POST" action="{% url 'account_confirm_email' confirmation.key %}">
+      {% csrf_token %}
+      <button class="btn btn-primary" type="submit">確定</button>
+    </form>
 
-      {% else %}
+    {% else %}
 
-      {% url 'account_email' as email_url %}
-      <p>リンクの有効期限が過ぎています。<a href="{{ email_url }}">再申請</a>.</p>
-      {% endif %}
-    </div>
+    {% url 'account_email' as email_url %}
+    <p>リンクの有効期限が過ぎています。<a href="{{ email_url }}">再申請</a>.</p>
+    {% endif %}
   </div>
 </div>
 {% endblock %}

@@ -1,6 +1,6 @@
 from accounts.models import CustomUser
 from django.db import models
-
+from django.utils import timezone
 
 class Category(models.Model):
     name = models.CharField(
@@ -17,15 +17,20 @@ class Company(models.Model):
         verbose_name='企業名',
         max_length=127,
     )
-    is_submitted = models.BooleanField(
-        default='False',
+
+    deadline = models.DateTimeField(
+        verbose_name='提出期限',
+        default=timezone.now
     )
+
     def __str__(self):
         return self.name
 
+    def deadline_mdHM(self):
+        return self.deadline.strftime('%月%d日%H:%M')
 
 class EntrySheet(models.Model):
-    user_id = models.ForeignKey(
+    user = models.ForeignKey(
         CustomUser,
         verbose_name='ユーザー',
         on_delete=models.PROTECT,
@@ -78,10 +83,12 @@ class EntrySheet(models.Model):
     categories = models.ManyToManyField(
         Category,
         verbose_name='カテゴリー',
+        blank=True,
     )
     companies = models.ManyToManyField(
         Company,
         verbose_name='企業',
+        blank=True,
     )
 
 
