@@ -30,14 +30,14 @@
             aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="{% url 'es_manager:index' %}">Hunt Assist</a>
-    <p class="text-success bg-light mt-3">〜ES編集・管理アプリケーション〜</p>
+    <a class="navbar-brand text-success" href="{% url 'es_manager:index' %}">Hunt Assist</a>
+    <p class="text-white mt-3">〜ES編集・管理アプリケーション〜</p>
     <p class="text-white ml-5 mt-3">ユーザー：{{ user.email|default:'-' }}</p>
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="navbar-nav">
         {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="#">ES</a>
+        <li class="nav-item {% block active_es_list %}{% endblock %}">
+          <a class="nav-link" href="{% url 'es_manager:es_list' %}">ES List</a>
         </li>
         {% endif %}
         <li class="nav-item {% block active_about %}{% endblock %}">

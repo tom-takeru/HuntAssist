@@ -11,7 +11,13 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-import secret
+
+import dj_database_url
+from dotenv import (
+    find_dotenv,
+    load_dotenv,
+)
+load_dotenv(find_dotenv())
 
 from django.contrib.messages import constants as messages
 
@@ -23,9 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'f83$f#fgjav)50bre$^2%wzd%k3ww#gimpa&ko*+&ogx&%hz34'
-SECRET_KEY = secret.DJANGO_SECRET_KEY
-
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # Application definition
 INSTALLED_APPS = [
@@ -86,18 +90,22 @@ WSGI_APPLICATION = 'config.wsgi.application'
 #     }
 # }
 
-# postgresql
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'huntassist',
-        'User': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': '',
-        'PORT': '',
-    }
-}
+# # postgresql
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'huntassist',
+#         'User': os.environ.get('DB_USER'),
+#         'PASSWORD': os.environ.get('DB_PASSWORD'),
+#         'HOST': '',
+#         'PORT': '',
+#     }
+# }
 
+# .envで設定できるデータベース設定の書き方
+DATABASES = {
+    'default': dj_database_url.config(conn_max_age=600),
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -136,6 +144,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -171,3 +180,5 @@ LOGIN_REDIRECT_URL = 'es_manager:index'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
 ACCOUNT_LOGOUT_ON_GET = True
+
+LOGIN_REDIRECT_URL = 'es_manager:es_list'

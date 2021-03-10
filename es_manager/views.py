@@ -1,5 +1,7 @@
 from django.views.generic import TemplateView
 from django.views.generic import FormView
+from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -27,3 +29,15 @@ class InquiryView(FormView):
         messages.success(self.request, 'メッセージを送信しました。')
         logger.info('Inquiry sent by {}'.format(form.cleaned_data['name']))
         return super().form_valid(form)
+
+from .models import EntrySheet
+
+class EntrySheetListView(LoginRequiredMixin, ListView):
+    model = EntrySheet
+    context_object_name = 'es_list'
+    template_name = 'es_manager/es_list.html'
+    paginate_by = 2
+
+    def get_queryset(self):
+        entry_sheets = EntrySheet.objects.filter(user_id=self.request.user).order_by('-created_at')
+        return entry_sheets
